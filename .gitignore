@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+#custom
+data/ibrd-statement-of-loans-historical-data.csv
