@@ -7,13 +7,14 @@ jobs:
     mainPythonFileUri: gs://dfwt-example/dist/main.py
     pythonFileUris:
     - gs://dfwt-example/dist/jobs.zip
+    - gs://dfwt-example/dist/libs.zip
   stepId: ibrd-large-pyspark
 placement:
   managedCluster:
     clusterName: three-node-cluster
     config:
       gceClusterConfig:
-        zoneUri: europe-west1-c
+        zoneUri: europe-west4-a
       masterConfig:
         diskConfig:
           bootDiskSizeGb: 500

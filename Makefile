@@ -9,7 +9,9 @@ build: clean ## build dist without dependencies
 	cd ./src && zip -x main.py -r ../dist/jobs.zip .
 
 build_with_deps: clean ##build dist with dependencies
+	mkdir ./dist
 	cp ./src/main.py ./dist
+	pip install -r requirements.txt -t src/libs
 	cd ./src && zip -x main.py -x \*libs\* -r ../dist/jobs.zip .
 	cd ./src/libs && zip -r ../../dist/libs.zip .
 
@@ -81,3 +83,8 @@ remove_job: ## delete the job added fom DWT
 copy_irbd_dataset_2gcp: ## unzip and copy irbd dataset to GCP 
 	cd  ${ROOTH_PATH}/data && unzip irbd_data.zip;\
 	gsutil cp ${ROOTH_PATH}/data/ibrd-statement-of-loans-historical-data.csv ${BUCKET_NAME}/data/ibrd-statement-of-loans-historical-data.csv
+
+import_yaml:
+	gcloud dataproc workflow-templates instantiate-from-file \
+    --file=/home/hamza/Desktop/Perso/gcp-dataproc-workflow-template-pyspark-migration-example/workflow_templates/temp.yaml \
+    --region=${REGION}

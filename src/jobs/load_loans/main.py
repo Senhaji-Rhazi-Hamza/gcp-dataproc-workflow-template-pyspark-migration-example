@@ -1,6 +1,9 @@
  # credit for this example provided goes to Gary A. Stafford with 
  # his tutorial in https://programmaticponderings.com/tag/dataproc/
+import click
+from utils.hello import say_hello
 def analyze(spark, gcs_input_path=None, gcs_output_path=None):
+    say_hello()
     df_loans = spark \
     .read \
     .format("csv") \
